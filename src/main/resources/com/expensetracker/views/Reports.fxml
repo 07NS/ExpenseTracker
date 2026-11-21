@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.expensetracker.controllers.ReportsController">
+   <content>
+      <VBox spacing="20.0" style="-fx-padding: 0 10px 20px 0;">
+         <children>
+            <!-- Header -->
+            <VBox styleClass="view-header">
+               <children>
+                  <Label styleClass="view-title" text="Financial Reports &amp; Analytics" />
+                  <Label styleClass="view-subtitle" text="In-depth breakdown of spending habits, categorical distributions, and historical trends" />
+               </children>
+            </VBox>
+
+            <!-- Metrics Highlight Cards -->
+            <GridPane hgap="16.0" vgap="16.0">
+               <columnConstraints>
+                  <ColumnConstraints percentWidth="33.33" />
+                  <ColumnConstraints percentWidth="33.33" />
+                  <ColumnConstraints percentWidth="33.34" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+               <children>
+                  <VBox styleClass="metric-card" GridPane.columnIndex="0">
+                     <children>
+                        <Label styleClass="card-title" text="CUMULATIVE EXPENDITURE" />
+                        <Label fx:id="lblTotalSpending" styleClass="card-value" text="₹0.00" />
+                        <Label styleClass="card-subtitle" text="All recorded transactions" />
+                     </children>
+                  </VBox>
+                  <VBox styleClass="metric-card" GridPane.columnIndex="1">
+                     <children>
+                        <Label styleClass="card-title" text="CATEGORIES TRACKED" />
+                        <Label fx:id="lblCategoryCount" styleClass="card-value" text="0" />
+                        <Label styleClass="card-subtitle" text="Active spending classifications" />
+                     </children>
+                  </VBox>
+                  <VBox styleClass="metric-card" GridPane.columnIndex="2">
+                     <children>
+                        <Label styleClass="card-title" text="TRACKING MONTHS" />
+                        <Label fx:id="lblMonthCount" styleClass="card-value" text="0" />
+                        <Label styleClass="card-subtitle" text="Distinct periods recorded" />
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+
+            <!-- Visual Charts Row -->
+            <HBox spacing="16.0">
+               <children>
+                  <!-- Pie Chart: Category Distribution -->
+                  <VBox prefHeight="360.0" styleClass="panel" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="panel-header" text="Category Distribution" />
+                        <PieChart fx:id="chartCategoryPie" legendSide="BOTTOM" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+
+                  <!-- Bar Chart: Monthly Comparison -->
+                  <VBox prefHeight="360.0" styleClass="panel" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="panel-header" text="Monthly Spending Comparison" />
+                        <BarChart fx:id="chartMonthlyBar" legendVisible="false" VBox.vgrow="ALWAYS">
+                           <xAxis>
+                              <CategoryAxis label="Month" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Amount (₹)" />
+                           </yAxis>
+                        </BarChart>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+
+            <!-- Data Breakdown Tables Row -->
+            <HBox spacing="16.0">
+               <children>
+                  <!-- Category Summary Table -->
+                  <VBox prefHeight="260.0" styleClass="panel" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="panel-header" text="Category Breakdown" />
+                        <TableView fx:id="tableCategory" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="colCatName" prefWidth="150.0" text="Category" />
+                              <TableColumn fx:id="colCatTotal" prefWidth="130.0" text="Total (₹)" />
+                              <TableColumn fx:id="colCatPercentage" prefWidth="120.0" text="Share (%)" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </VBox>
+
+                  <!-- Monthly Summary Table -->
+                  <VBox prefHeight="260.0" styleClass="panel" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="panel-header" text="Monthly Spending" />
+                        <TableView fx:id="tableMonthly" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="colMonthName" prefWidth="200.0" text="Month (YYYY-MM)" />
+                              <TableColumn fx:id="colMonthTotal" prefWidth="180.0" text="Total Spent (₹)" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
+

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="750.0" prefWidth="1100.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.expensetracker.controllers.MainController">
+   <left>
+      <VBox styleClass="sidebar" BorderPane.alignment="CENTER">
+         <children>
+            <!-- Brand Section -->
+            <HBox alignment="CENTER_LEFT" styleClass="brand-container">
+               <children>
+                  <Label styleClass="brand-icon" text="📊" />
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label styleClass="brand-title" text="ExpenseInsight" />
+                        <Label styleClass="brand-subtitle" text="Personal Finance Engine" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+
+            <Label styleClass="nav-section-title" text="NAVIGATION" />
+
+            <!-- Navigation Buttons -->
+            <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" onAction="#handleNavDashboard" styleClass="nav-button, active" text="📊   Dashboard" />
+            <Button fx:id="btnTransactions" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" onAction="#handleNavTransactions" styleClass="nav-button" text="💳   Transactions" />
+            <Button fx:id="btnReports" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" onAction="#handleNavReports" styleClass="nav-button" text="📈   Reports" />
+
+            <!-- Spacer -->
+            <Region VBox.vgrow="ALWAYS" />
+
+            <!-- Sidebar Footer -->
+            <VBox styleClass="sidebar-footer">
+               <children>
+                  <Label styleClass="footer-text" text="Database: SQLite" />
+                  <Label styleClass="footer-text" text="Version 2.0" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <StackPane fx:id="contentArea" styleClass="content-area" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
+

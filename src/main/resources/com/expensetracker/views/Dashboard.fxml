@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.expensetracker.controllers.DashboardController">
+   <children>
+      <!-- Header -->
+      <VBox styleClass="view-header">
+         <children>
+            <Label styleClass="view-title" text="Financial Dashboard" />
+            <Label styleClass="view-subtitle" text="Real-time summary of your expenses and spending breakdown" />
+         </children>
+      </VBox>
+
+      <!-- KPI Metric Cards Grid -->
+      <GridPane hgap="16.0" vgap="16.0">
+         <columnConstraints>
+            <ColumnConstraints percentWidth="33.33" />
+            <ColumnConstraints percentWidth="33.33" />
+            <ColumnConstraints percentWidth="33.34" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+         <children>
+            <!-- Card 1: Total Expenses -->
+            <VBox styleClass="metric-card" GridPane.columnIndex="0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <VBox HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="card-title" text="TOTAL EXPENSES" />
+                              <Label fx:id="lblTotalExpenses" styleClass="card-value" text="₹0.00" />
+                              <Label styleClass="card-subtitle" text="All time recorded expenses" />
+                           </children>
+                        </VBox>
+                        <Label style="-fx-font-size: 24px;" text="💵" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <!-- Card 2: Monthly Spending -->
+            <VBox styleClass="metric-card" GridPane.columnIndex="1">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <VBox HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="card-title" text="CURRENT MONTH" />
+                              <Label fx:id="lblMonthlyExpenses" styleClass="card-value" text="₹0.00" />
+                              <Label fx:id="lblCurrentMonthLabel" styleClass="card-subtitle" text="Spending this month" />
+                           </children>
+                        </VBox>
+                        <Label style="-fx-font-size: 24px;" text="📅" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <!-- Card 3: Highest Expense -->
+            <VBox styleClass="metric-card" GridPane.columnIndex="2">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <VBox HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="card-title" text="HIGHEST EXPENSE" />
+                              <Label fx:id="lblHighestExpense" styleClass="card-value" text="₹0.00" />
+                              <Label fx:id="lblHighestExpenseTitle" styleClass="card-subtitle" text="No records yet" />
+                           </children>
+                        </VBox>
+                        <Label style="-fx-font-size: 24px;" text="🏆" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+
+      <!-- Main Visual Section (Recent Table + Spending Chart) -->
+      <HBox spacing="16.0" VBox.vgrow="ALWAYS">
+         <children>
+            <!-- Recent Transactions Table Panel -->
+            <VBox styleClass="panel" HBox.hgrow="ALWAYS" prefWidth="520.0">
+               <children>
+                  <Label styleClass="panel-header" text="Recent Transactions" />
+                  <TableView fx:id="tableRecent" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="colRecentTitle" prefWidth="180.0" text="Expense" />
+                        <TableColumn fx:id="colRecentCategory" prefWidth="100.0" text="Category" />
+                        <TableColumn fx:id="colRecentDate" prefWidth="110.0" text="Date" />
+                        <TableColumn fx:id="colRecentAmount" prefWidth="100.0" text="Amount (₹)" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </VBox>
+
+            <!-- Spending Pie Chart Panel -->
+            <VBox styleClass="panel" HBox.hgrow="ALWAYS" prefWidth="420.0">
+               <children>
+                  <Label styleClass="panel-header" text="Category Distribution" />
+                  <PieChart fx:id="chartCategory" legendSide="BOTTOM" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
+
